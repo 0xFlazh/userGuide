@@ -2,11 +2,11 @@
 
 ## High level overview
 
-At a high level, OxFlazh functions just like a normal exchange. Unlike a traditional exchange, which has all of its business logic defined and executed on a private server owned by a company, OxFlazh's business logic is defined and executed in a smart contract on the public, decentralized [Ethereum](https://ethereum.org) blockchain. The OxFlazh GUI (Graphical User Interface) is designed to let you interact with the OxFlazh smart contract without having to deal with the low-level details of blockchain transactions.
+At a high level, 0xFlazh functions just like a normal exchange. Unlike a traditional exchange, which has all of its business logic defined and executed on a private server owned by a company, 0xFlazh's business logic is defined and executed in a smart contract on the public, decentralized [Ethereum](https://ethereum.org) blockchain. The 0xFlazh GUI (Graphical User Interface) is designed to let you interact with the 0xFlazh smart contract without having to deal with the low-level details of blockchain transactions.
 
-The OxFlazh smart contract allows you to deposit or withdraw Ether or any [ERC-20](https://github.com/ethereum/EIPs/issues/20) Ethereum token.
+The 0xFlazh smart contract allows you to deposit or withdraw Ether or any [ERC-20](https://github.com/ethereum/EIPs/issues/20) Ethereum token.
 
-Like any other exchange, OxFlazh has an order book of resting orders. A resting order consists of a price, volume, expiration time (measured in blocks), and signature. In effect, it represents a signed intent to trade. When you create a new resting order, it gets broadcast to an off-chain order book server. The primary benefit of storing resting orders off-chain is that you don't have to create an Ethereum transaction and pay gas to submit a resting order. OxFlazh does have a backup mechanism that allows orders to be submitted with on-chain transactions.
+Like any other exchange, 0xFlazh has an order book of resting orders. A resting order consists of a price, volume, expiration time (measured in blocks), and signature. In effect, it represents a signed intent to trade. When you create a new resting order, it gets broadcast to an off-chain order book server. The primary benefit of storing resting orders off-chain is that you don't have to create an Ethereum transaction and pay gas to submit a resting order. 0xFlazh does have a backup mechanism that allows orders to be submitted with on-chain transactions.
 
 When a counterparty decides to trade your resting order, he submits a transaction to the smart contract with your signed intent to trade and the volume he wishes to trade. The smart contract checks the signature, makes sure you and the counterparty both have enough funds to cover the trade, and then executes the trade by moving funds between accounts.
 
@@ -139,9 +139,9 @@ The first contract, SafeMath, defines functions that can be used to do addition,
     }
 
 
-The Token interface defines the ERC-20 token standard. OxFlazh relies on the Token fuction signatures to be able to do token transfers. 
+The Token interface defines the ERC-20 token standard. 0xFlazh relies on the Token fuction signatures to be able to do token transfers. 
 
-    contract OxFlazh is SafeMath {
+    contract 0xFlazh is SafeMath {
       address public admin; //the admin address
       address public feeAccount; //the account that will receive fees
       address public accountLevelsAddr; //the address of the AccountLevels contract
@@ -153,10 +153,10 @@ The Token interface defines the ERC-20 token standard. OxFlazh relies on the Tok
       mapping (address => mapping (bytes32 => uint)) public orderFills; //mapping of user accounts to mapping of order hashes to uints (amount of order that has been filled)
 
 
-The first section of the main OxFlazh contract defines the storage variables.
+The first section of the main 0xFlazh contract defines the storage variables.
 
 - The admin variable holds the account with special administrative privileges. The admin account can change the admin account, change the accountLevelsAddr, or lower the fees. The admin account cannot raise the fees.
-- The feeAccount variable holds the account to which OxFlazh trading fees are paid.
+- The feeAccount variable holds the account to which 0xFlazh trading fees are paid.
 - The tokens variable is where user balances are stored. For example, if your address is 0x123 and the DAO token address is 0xbb9, then your DAO balance will be in tokens[0xbb9][0x123]. By special case, your Ether balance will be in tokens[0][0x123]. Note that all Ether amounts are in Wei, and all token amounts are in the base unit of the token (which is usually Wei, but depends on the token).
 - The orders variable is used to keep track of orders that have been initiated on-chain. For example, if your address is 0x123, and you create an order with order hash 0x234, then orders[0x123][0x234] will be true.
 - The orderFills variable is used to keep track of orders that have been partially or completely filled. For example, if you create a resting order (using the account 0x123) to buy 10 tokens with a hash of 0x234, and someone submits a transaction to sell you 5 tokens (taking out half of your order), then orderFills[0x123][0x234] will be changed to 5.
@@ -170,7 +170,7 @@ The first section of the main OxFlazh contract defines the storage variables.
 
 The events are emitted by similarly named transactions and stored in the blockchain. The GUI uses them to display a list of trades, deposits, and withdrawals.
 
-    function OxFlazh(address admin_, address feeAccount_, address accountLevelsAddr_, uint feeMake_, uint feeTake_, uint feeRebate_) {
+    function 0xFlazh(address admin_, address feeAccount_, address accountLevelsAddr_, uint feeMake_, uint feeTake_, uint feeRebate_) {
       admin = admin_;
       feeAccount = feeAccount_;
       accountLevelsAddr = accountLevelsAddr_;
@@ -184,7 +184,7 @@ The events are emitted by similarly named transactions and stored in the blockch
     }
 
 
-The OxFlazh constructor simply initializes the admin account, fee account, account levels address, and fee percentages. The default function simply throws an error. Any Ether sent to OxFlazh without a function call will be returned to sender.
+The 0xFlazh constructor simply initializes the admin account, fee account, account levels address, and fee percentages. The default function simply throws an error. Any Ether sent to 0xFlazh without a function call will be returned to sender.
 
     function changeAdmin(address admin_) {
       if (msg.sender != admin) throw;
@@ -293,7 +293,7 @@ The trade function, along with its helper tradeBalances, represent the biggest c
 
 The first thing the trade function does is construct an order hash. Then it checks to make sure the signature provided matches the order hash (or the order was submitted by the user on-chain), the order hasn't expired, and the trade won't overfill the remaining volume associated with the order. If all these things are true, the tradeBalances function moves funds from one account to the other, and moves funds to the fee account. Note that all fees are paid in the tokenGet token. Then the trade function updates the orderFills variable with the amount that has been filled, and emits an event.
 
-Note that the balances of the two counterparties are never explicitly checked, because the safeSub function is used to ensure the balances don't go below zero. If the trade would result in a balance going below zero, the safeSub function would throw an error and the trade would fail. Also note that the tradeBalances function is marked as private, which means it can only be called from within the OxFlazh smart contract (specifically, from within the trade function).
+Note that the balances of the two counterparties are never explicitly checked, because the safeSub function is used to ensure the balances don't go below zero. If the trade would result in a balance going below zero, the safeSub function would throw an error and the trade would fail. Also note that the tradeBalances function is marked as private, which means it can only be called from within the 0xFlazh smart contract (specifically, from within the trade function).
 
     function testTrade(address tokenGet, uint amountGet, address tokenGive, uint amountGive, uint expires, uint nonce, address user, uint8 v, bytes32 r, bytes32 s, uint amount, address sender) constant returns(bool) {
       if (!(

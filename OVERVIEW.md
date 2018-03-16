@@ -2,9 +2,9 @@
 
 ## High level overview
 
-At a high level, Oxflazh functions just like a normal exchange. Unlike a traditional exchange, which has all of its business logic defined and executed on a private server owned by a company, Oxflazh's business logic is defined and executed in a smart contract on the public, decentralized [Ethereum](https://ethereum.org) blockchain. The Oxflazh GUI (Graphical User Interface) is designed to let you interact with the Oxflazh smart contract without having to deal with the low-level details of blockchain transactions.
+At a high level, 0xFlazh functions just like a normal exchange. Unlike a traditional exchange, which has all of its business logic defined and executed on a private server owned by a company, 0xFlazh's business logic is defined and executed in a smart contract on the public, decentralized [Ethereum](https://ethereum.org) blockchain. The 0xFlazh GUI (Graphical User Interface) is designed to let you interact with the 0xFlazh smart contract without having to deal with the low-level details of blockchain transactions.
 
-Like any other exchange, Oxflazh has an order book of resting orders. A resting order consists of a price, volume, expiration time (measured in blocks), and signature. In effect, it represents a signed intent to trade. When you create a new resting order, it gets broadcast to an off-chain order book server. The primary benefit of storing resting orders off-chain is that you don't have to create an Ethereum transaction and pay gas to submit a resting order. Oxflazh does have a backup mechanism that allows orders to be submitted with on-chain transactions.
+Like any other exchange, 0xFlazh has an order book of resting orders. A resting order consists of a price, volume, expiration time (measured in blocks), and signature. In effect, it represents a signed intent to trade. When you create a new resting order, it gets broadcast to an off-chain order book server. The primary benefit of storing resting orders off-chain is that you don't have to create an Ethereum transaction and pay gas to submit a resting order. 0xFlazh does have a backup mechanism that allows orders to be submitted with on-chain transactions.
 
 ## Trading
 
@@ -18,4 +18,4 @@ Previously, take fees were paid in the token being received by the taker. Now th
 
 ## Deposit & Withdrawal
 
-The Oxflazh smart contract allows you to deposit or withdraw Ether or any [ERC-20](https://github.com/ethereum/EIPs/issues/20) Ethereum token.
+The 0xFlazh smart contract allows you to deposit or withdraw Ether or any [ERC-20](https://github.com/ethereum/EIPs/issues/20) Ethereum token.

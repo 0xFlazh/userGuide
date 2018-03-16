@@ -7,15 +7,15 @@ Previously, take fees were paid in the token being received by the taker. Now th
 
 
 ## Taker Fee overview
-0.1% per trade
+`0.1% per trade`
 
 ## Maker Fee overview
-0.05% per trade
+`0.05% per trade`
 
 
 ## Order Cancel Fee overview
-Free
+`Free`
 
 
 ## Deposit, Withdrawal Fee overview
-Free
+`Free`
