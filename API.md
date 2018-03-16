@@ -6,11 +6,11 @@
 
 0xflazh has one API endpoint. It can be reached from this domains:
 
- * `https://api.0xflazh.com`
+ * `https://api.0xflazh.io`
 
 ## Endpoints
 
-### GET `https://api.0xflazh.com/returnTicker`
+### GET `https://api.0xflazh.io/returnTicker`
 
 This returns every pair that has traded in the past 24 hours.
 
@@ -30,7 +30,7 @@ Example output:
 }
 ```
 
-### GET `https://api.0xflazh.com/trades/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.io/trades/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 most recent trades for a particular token. The page number starts at 0.
 
@@ -51,13 +51,13 @@ Example output:
 ]
 ```
 
-### GET `https://api.0xflazh.com/myTrades/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.io/myTrades/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 most recent trades associated with a given user for a particular token. The page number starts at 0.
 
 Example output: same structure as the `trades` endpoint.
 
-### GET `https://api.0xflazh.com/orders/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.io/orders/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 best buy and sell orders for a particular token. The page number starts at 0.
 
@@ -114,13 +114,13 @@ Example output:
 }
 ```
 
-### GET `https://api.0xflazh.com/myOrders/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.io/myOrders/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 best buy and sell orders associated with a given user for a particular token. The page number starts at 0.
 
 Example output: same structure as the `orders` endpoint.
 
-### GET `https://api.0xflazh.com/funds/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.io/funds/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 most recent deposits and withdrawals in either the given token address or ETH for a given user. The page number starts at 0.
 
@@ -140,7 +140,7 @@ Example output:
 ]
 ```
 
-### POST `https://api.0xflazh.com/message`
+### POST `https://api.0xflazh.io/message`
 
 This allows you to post an order.
 
