@@ -6,16 +6,16 @@ The fees are based on marker and taker model (0.1% for takers, 0.05% for makers)
 Previously, take fees were paid in the token being received by the taker. Now they (along with make fees and rebates) are paid in the token being given by the taker. This simplifies the fee calculus.
 
 
-## Taker Fee overview
+## Taker Fee
 `0.1% per trade`
 
-## Maker Fee overview
+## Maker Fee 
 `0.05% per trade`
 
 
-## Order Cancel Fee overview
+## Order Cancel Fee 
 `Free`
 
 
-## Deposit, Withdrawal Fee overview
+## Deposit, Withdrawal Fee 
 `Free`
