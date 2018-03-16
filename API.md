@@ -1,16 +1,16 @@
-# Oxflazh API
+# 0xflazh API
 
-Oxflazh's API allows you to query orders, trades, deposits, and withdrawals. Since Oxflazh is a smart contract, it is also possible to get trades, deposits, and withdrawals from the Ethereum API (through an Ethereum node or Etherscan API). Oxflazh's orderbook is an off-chain mechanism (a list of cryptographically signed orders) that you can only access through this API. The API allows you to see existing orders or place a new one.
+0xflazh's API allows you to query orders, trades, deposits, and withdrawals. Since 0xflazh is a smart contract, it is also possible to get trades, deposits, and withdrawals from the Ethereum API (through an Ethereum node or Etherscan API). 0xflazh's orderbook is an off-chain mechanism (a list of cryptographically signed orders) that you can only access through this API. The API allows you to see existing orders or place a new one.
 
 ## Servers
 
-Oxflazh has one API endpoint. It can be reached from this domains:
+0xflazh has one API endpoint. It can be reached from this domains:
 
- * `https://api.Oxflazh.com`
+ * `https://api.0xflazh.com`
 
 ## Endpoints
 
-### GET `https://api.Oxflazh.com/returnTicker`
+### GET `https://api.0xflazh.com/returnTicker`
 
 This returns every pair that has traded in the past 24 hours.
 
@@ -30,7 +30,7 @@ Example output:
 }
 ```
 
-### GET `https://api.Oxflazh.com/trades/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.com/trades/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 most recent trades for a particular token. The page number starts at 0.
 
@@ -51,13 +51,13 @@ Example output:
 ]
 ```
 
-### GET `https://api.Oxflazh.com/myTrades/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.com/myTrades/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 most recent trades associated with a given user for a particular token. The page number starts at 0.
 
 Example output: same structure as the `trades` endpoint.
 
-### GET `https://api.Oxflazh.com/orders/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.com/orders/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 best buy and sell orders for a particular token. The page number starts at 0.
 
@@ -114,13 +114,13 @@ Example output:
 }
 ```
 
-### GET `https://api.Oxflazh.com/myOrders/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.com/myOrders/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 best buy and sell orders associated with a given user for a particular token. The page number starts at 0.
 
 Example output: same structure as the `orders` endpoint.
 
-### GET `https://api.Oxflazh.com/funds/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
+### GET `https://api.0xflazh.com/funds/[USER ADDRESS]/[TOKEN ADDRESS]/[PAGE]`
 
 This returns the 1,000 most recent deposits and withdrawals in either the given token address or ETH for a given user. The page number starts at 0.
 
@@ -140,7 +140,7 @@ Example output:
 ]
 ```
 
-### POST `https://api.Oxflazh.com/message`
+### POST `https://api.0xflazh.com/message`
 
 This allows you to post an order.
 
@@ -150,7 +150,7 @@ Body parameters: `message`, which should be JSON with the following parameters:
  * `tokenGive`: the token you want to give (use the zero address, `0x0000000000000000000000000000000000000000` for ETH)
  * `amountGet`: the amount you want to get (in wei or the base unit of the token)
  * `tokenGet`: the token you want to get (use the zero address, `0x0000000000000000000000000000000000000000` for ETH)
- * `contractAddr`: the Oxflazh smart contract address
+ * `contractAddr`: the 0xflazh smart contract address
  * `expires`: the block number when the order should expire
  * `nonce`: a random number
  * `user`: the address of the user placing the order
